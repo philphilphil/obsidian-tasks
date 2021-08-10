@@ -216,8 +216,11 @@ class QueryRenderChild extends MarkdownRenderChild {
     }
 
     private addBacklinks(postInfo: HTMLSpanElement, fileName: string, task: Task) {
-        postInfo.append(' (');
-        const link = postInfo.createEl('a');
+        const span = postInfo.createEl('span');
+        span.addClass('tasks-backlink');
+        span.append(' (');
+        
+        const link = span.createEl('a');
         link.href = fileName;
         link.setAttribute('data-href', fileName);
         link.rel = 'noopener';
@@ -241,6 +244,7 @@ class QueryRenderChild extends MarkdownRenderChild {
         }
 
         link.setText(linkText);
-        postInfo.append(')');
+        
+        span.append(')');
     }
 }
